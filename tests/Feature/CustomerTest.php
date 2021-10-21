@@ -19,4 +19,14 @@ class CustomerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * @test
+     *  */
+    public function only_logged_users_can_see_customers_list()
+    {
+        $response = $this->get('/customers');
+
+        $response->assertRedirect('/login');
+    }
 }
